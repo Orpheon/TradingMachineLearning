@@ -18,7 +18,7 @@ class Dataset(torch.utils.data.Dataset):
         if self.data[idx] > self.data[idx-1]:
             target = torch.Tensor([1])
         else:
-            target = torch.Tensor([0])
+            target = torch.Tensor([-1])
         return torch.Tensor(self.data[idx-self.receptivefield:idx]), target
 
 class Net(nn.Module):
@@ -60,6 +60,10 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=80, shuffle=True,
 print("Building testing dataset tensor..")
 testset = Dataset(testdata, net.receptivefield())
 testloader = torch.utils.data.DataLoader(testset, batch_size=80, shuffle=True, num_workers=2)
+
+# Everything below here is tutorial copy-paste and not yet really meant to be workable
+
+
 
 criterion = nn.CrossEntropyLoss() # use a Classification Cross-Entropy loss
 optimizer = optim.SGD(net.parameters(), lr=0.1, momentum=0.9)
