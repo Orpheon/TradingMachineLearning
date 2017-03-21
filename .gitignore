@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Cached datasets
+*_test.csv
+*_train.csv
